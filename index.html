@@ -4,14 +4,162 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>Swine Monitoring System</title>
 
-  <meta name="description" content="A smart swine monitoring system design to track possible problems and future problems in your pig farm.">
-
   <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom right, #0b3d2e, #14532d);
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      text-align: center;
+    }
 
-      <body>
+    .container {
+      max-width: 700px;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 42px;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
+    .button {
+      margin-top: 20px;
+      display: inline-block;
+      padding: 12px 24px;
+      background: white;
+      color: #14532d;
+      text-decoration: none;
+      border-radius: 10px;
+      font-weight: bold;
+    }
+
+    .button:hover {
+      opacity: 0.9;
+    }
+
+    .pig-container {
+      margin-top: 40px;
+      animation: floatPig 3s ease-in-out infinite;
+    }
+
+    .pig-face {
+      width: 220px;
+      height: 220px;
+      background: pink;
+      border-radius: 50%;
+      margin: auto;
+      position: relative;
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    }
+
+    .ear {
+      width: 70px;
+      height: 70px;
+      background: pink;
+      position: absolute;
+      top: -20px;
+      border-radius: 20px;
+    }
+
+    .left-ear {
+      left: 20px;
+      transform: rotate(-20deg);
+    }
+
+    .right-ear {
+      right: 20px;
+      transform: rotate(20deg);
+    }
+
+    .eye {
+      width: 18px;
+      height: 18px;
+      background: black;
+      border-radius: 50%;
+      position: absolute;
+      top: 80px;
+      animation: blink 4s infinite;
+      transform-origin: center;
+    }
+
+    .left-eye {
+      left: 65px;
+    }
+
+    .right-eye {
+      right: 65px;
+    }
+
+    .snout {
+      width: 90px;
+      height: 65px;
+      background: #ff9eb5;
+      border-radius: 40px;
+      position: absolute;
+      top: 115px;
+      left: 65px;
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+    }
+
+    .nostril {
+      width: 12px;
+      height: 22px;
+      background: #333;
+      border-radius: 50%;
+    }
+
+    .smile {
+      width: 70px;
+      height: 35px;
+      border-bottom: 5px solid #b30059;
+      border-radius: 0 0 60px 60px;
+      position: absolute;
+      left: 75px;
+      top: 155px;
+    }
+
+    @keyframes floatPig {
+      0% {
+        transform: translateY(0px);
+      }
+
+      50% {
+        transform: translateY(-10px);
+      }
+
+      100% {
+        transform: translateY(0px);
+      }
+    }
+
+    @keyframes blink {
+      0%, 45%, 100% {
+        transform: scaleY(1);
+      }
+
+      47%, 49% {
+        transform: scaleY(0.1);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
   <div class="container">
 
     <h1>Swine Monitoring System</h1>
@@ -44,7 +192,7 @@
     </div>
 
   </div>
+
 </body>
 </html>
-
 
