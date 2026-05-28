@@ -8,7 +8,22 @@
   <title>Swine Monitoring System</title>
 
   <meta name="description" content="A smart swine monitoring system design to track possible problems and future problems in your pig farm.">
+.pig {
+  position: relative;
+  width: 300px;
+}
 
+.pig-face {
+  width: 100%;
+}
+
+.pig-smile {
+  position: absolute;
+  width: 80px;
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+}
   <style>
     body {
       margin: 0;
@@ -192,6 +207,10 @@ h2 {
     <div class="snout">
       <div class="nostril"></div>
       <div class="nostril"></div>
+      <div class="pig">
+  <img src="pig.png" class="pig-face">
+  <img src="smile.png" class="pig-smile">
+      </div>
       <div class="smile"></div>
   
 </div>
