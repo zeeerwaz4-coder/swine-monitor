@@ -1,33 +1,77 @@
-  <!DOCTYPE html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <title>Swine Tutorials</title>
-   <link rel="stylesheet" href="style.css">
-  <head>
-<body>
-
-  <h1>Swine Monitoring System</h1>
-
-  <!-- VIDEO SECTION -->
-  <video controls width="700">
-    <source src="sample.mp4" type="video/mp4">
-  </video>
-
-</body>
-</html>
-  <title>Swine Monitoring System</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tutorials</title>
 
   <style>
     body {
-      background: #0b2f4a;
-      color: white;
+      margin: 0;
+      padding: 20px;
+      background: #0b1f3a;
       font-family: Arial, sans-serif;
+      color: white;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 40px;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 18px;
+      margin-bottom: 30px;
+    }
+
+    .video-container {
+      max-width: 900px;
+      margin: auto;
+      background: #10294d;
+      padding: 15px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.4);
+    }
+
+    video {
+      width: 100%;
+      border-radius: 12px;
+    }
+
+    .button {
+      display: inline-block;
+      margin-top: 25px;
+      padding: 12px 25px;
+      background: #4da6ff;
+      color: white;
+      text-decoration: none;
+      border-radius: 10px;
+      font-size: 18px;
+    }
+
+    .button:hover {
+      background: #3399ff;
     }
   </style>
-
 </head>
 
+<body>
 
-<h1>Swine Monitoring Tutorials</h1>
+  <h1>System Tutorials</h1>
 
-<p>This page is working.</p>
+  <p>
+    Watch the tutorial video below to learn how the system works.
+  </p>
+
+  <div class="video-container">
+    <video controls>
+      <source src="video/tutorial.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+
+  <a href="index.html" class="button">Back to Home</a>
+
+</body>
+</html>
