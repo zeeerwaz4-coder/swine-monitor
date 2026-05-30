@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://zeeerwaz4-coder.github.io/swine-monitor/sitemap.xml
+Sitemap: https://swine-monitor.zeeerwaz4.workers.dev/sitemap.xml
