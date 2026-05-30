@@ -1,316 +1,254 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Swine Monitoring System</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    body {
-      margin: 0;
-      overflow-x: hidden;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(to bottom right, #0b3d2e, #14532d);
-      color: white;
-      min-height: 100vh;
-      padding: 20px;
-      text-align: center;
-      box-sixing: border-box;
-    }
-    .ai-bg {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 200%;
-  height: 200%;
-  background:
+<title>Swine Monitoring System</title>
 
-  repeating-linear-gradient(
-    90deg,
-    rgba(0,255,0,0.08) 0px,
-    rgba(0,255,0,0.08) 2px,
-    transparent 2px,
-    transparent 50px
-    @keyframes moveGrid {
-  from {
-    transform: translate(0,0);
-  }
+<style>
 
-  to {
-    transform: translate(-50px,-50px);
-  }
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#071b11;
+    overflow-x:hidden;
+    color:white;
 }
 
-    .container {
-      max-width: 700px;
-      padding: 20px;
-    }
+/* AI MOVING BACKGROUND */
 
-    h1 {
-      font-size: 42px;
-      margin-bottom: 10px;
-    }
+.ai-bg{
+    position:fixed;
+    top:0;
+    left:0;
+    width:200%;
+    height:200%;
+    background:
+    repeating-linear-gradient(
+        90deg,
+        rgba(0,255,120,0.08) 0px,
+        rgba(0,255,120,0.08) 2px,
+        transparent 2px,
+        transparent 60px
+    );
 
-    p {
-      font-size: 18px;
-      line-height: 1.6;
-    }
-
-    .button {
-      margin-top: 20px;
-      display: inline-block;
-      padding: 12px 24px;
-      background: white;
-      color: #14532d;
-      text-decoration: none;
-      border-radius: 10px;
-      font-weight: bold;
-    }
-
-    .button:hover {
-      opacity: 0.9;
-    }
-
-    .pig-container {
-      margin-top: 40px;
-      animation: floatPig 3s ease-in-out infinite;
-    }
-
-    .pig-face {
-      width: 220px;
-      height: 220px;
-      background: pink;
-      border-radius: 50%;
-      margin: auto;
-      position: relative;
-      box-shadow: 0 0 20px rgba(0,0,0,0.3);
-    }
-
-    .ear {
-      width: 70px;
-      height: 70px;
-      background: pink;
-      position: absolute;
-      top: -20px;
-      border-radius: 20px;
-    }
-
-    .left-ear {
-      left: 20px;
-      transform: rotate(-20deg);
-    }
-
-    .right-ear {
-      right: 20px;
-      transform: rotate(20deg);
-    }
-
-    .eye {
-      width: 18px;
-      height: 18px;
-      background: black;
-      border-radius: 50%;
-      position: absolute;
-      top: 80px;
-      animation: blink 4s infinite;
-      transform-origin: center;
-    }
-
-    .left-eye {
-      left: 65px;
-    }
-
-    .right-eye {
-      right: 65px;
-    }
-
-    .snout {
-      width: 90px;
-      height: 65px;
-      background: #ff9eb5;
-      border-radius: 40px;
-      position: absolute;
-      top: 115px;
-      left: 65px;
-      display: flex;
-      justify-content: space-evenly;
-      align-items: center;
-    }
-
-    .nostril {
-      width: 12px;
-      height: 22px;
-      background: #333;
-      border-radius: 50%;
-    }
-
-    .smile {
-      width: 70px;
-      height: 35px;
-      border-bottom: 5px solid #b30059;
-      border-radius: 0 0 60px 60px;
-      position: absolute;
-      left: 75px;
-      top: 155px;
-    }
-
-    @keyframes floatPig {
-      0% {
-        transform: translateY(0px);
-      }
-
-      50% {
-        transform: translateY(-10px);
-      }
-
-      100% {
-        transform: translateY(0px);
-      }
-    }
-
-    @keyframes blink {
-      0%, 45%, 100% {
-        transform: scaleY(1);
-      }
-
-      47%, 49% {
-        transform: scaleY(0.1);
-      }
-    }
-    .email-request {
-  margin-top: 20px;
-  font-size: 16px;
-  line-height: 1.6;
+    animation:moveGrid 10s linear infinite;
+    z-index:-2;
 }
 
-.email-request a {
-  color: white;
-  font-weight: bold;
-  text-decoration: none;
-  word-break: break-word;
-      }
-    form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+@keyframes moveGrid{
+    from{
+        transform:translateX(0);
+    }
+
+    to{
+        transform:translateX(-60px);
+    }
+}
+
+/* GLOW EFFECT */
+
+.glow{
+    position:fixed;
+    width:500px;
+    height:500px;
+    background:radial-gradient(
+        circle,
+        rgba(0,255,120,0.15),
+        transparent 70%
+    );
+
+    top:-100px;
+    right:-100px;
+    z-index:-1;
+}
+
+/* HEADER */
+
+header{
+    text-align:center;
+    padding:30px 20px;
+    background:rgba(0,0,0,0.4);
+    backdrop-filter:blur(5px);
+}
+
+header h1{
+    margin:0;
+    font-size:38px;
+    color:#7CFFB2;
+}
+
+header p{
+    color:#d0ffd9;
+}
+
+/* MAIN CONTAINER */
+
+.container{
+    width:90%;
+    max-width:1100px;
+    margin:auto;
+    padding:30px 0;
+}
+
+/* CARDS */
+
+.card{
+    background:rgba(255,255,255,0.05);
+    border:1px solid rgba(255,255,255,0.1);
+    border-radius:20px;
+    padding:25px;
+    margin-bottom:30px;
+    backdrop-filter:blur(8px);
+    box-shadow:0 0 15px rgba(0,255,120,0.15);
+}
+
+/* FLOATING PIG */
+
+.floating-pig{
+    width:180px;
+    display:block;
+    margin:20px auto;
+    animation:floatPig 4s ease-in-out infinite;
+}
+
+@keyframes floatPig{
+    0%{
+        transform:translateY(0px);
+    }
+
+    50%{
+        transform:translateY(-15px);
+    }
+
+    100%{
+        transform:translateY(0px);
+    }
+}
+
+/* BUTTONS */
+
+button{
+    background:#00cc66;
+    border:none;
+    padding:12px 25px;
+    border-radius:10px;
+    color:white;
+    cursor:pointer;
+    font-size:16px;
+    transition:0.3s;
+}
+
+button:hover{
+    background:#00ff88;
+    transform:scale(1.05);
+}
+
+/* FORM */
+
+form{
+    display:flex;
+    flex-direction:column;
+    gap:15px;
 }
 
 input,
-textarea {
-  width: 90%;
-  max-width: 500px;
-  padding: 12px;
-  margin: 10px 0;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  font-size: 16px;
-  box-sizing: border-box;
+textarea{
+    padding:12px;
+    border:none;
+    border-radius:10px;
+    background:rgba(255,255,255,0.08);
+    color:white;
 }
 
-textarea {
-  min-height: 120px;
-  resize: vertical;
+textarea{
+    min-height:120px;
+    resize:vertical;
 }
 
-button {
-  padding: 12px 24px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-      }
-    .status-box {
-  background: #d4edda;
-  color: #155724;
-  padding: 10px 20px;
-  border-radius: 10px;
-  margin: 20px auto;
-  width: fit-content;
-  font-weight: bold;
-      }
-    footer {
-  margin-top: 40px;
-  padding: 20px;
-  background: #222;
-  color: white;
-  text-align: center;
-        }
-    footer {
-  text-align: center;
-  width: 100%;
-  font-size: 14px;
-  padding: 10px 0;
+input::placeholder,
+textarea::placeholder{
+    color:#d0ffd9;
 }
 
-.email-request {
-  text-align: center;
-  margin-top: 15px;
-  font-size: 14px;
-        }
-  </style>
+/* FOOTER */
+
+footer{
+    text-align:center;
+    padding:20px;
+    background:rgba(0,0,0,0.4);
+    color:#d0ffd9;
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+    header h1{
+        font-size:28px;
+    }
+
+    .floating-pig{
+        width:130px;
+    }
+
+}
+
+</style>
 </head>
-  
 
 <body>
-  <div class="ai-bg"></div>
 
-  <div class="container">
+<div class="ai-bg"></div>
+<div class="glow"></div>
 
+<header>
     <h1>Swine Monitoring System</h1>
+    <p>AI Powered Pig Farm Monitoring</p>
+</header>
 
-    <p>
-      Smart monitoring platform for swine farms with real-time tracking.
-    
-    </p>
-    <div class="status-box">
-  ● System Status: Online
-    </div>
+<div class="container">
 
-    <a href="tutorials.html" class="button">Click for Tutorials</a>
-    <p class="email-request">
-  Want the complete system files?<br>
-  Email me at:
-  <a href="mailto:zeeerwaz4@gmail.com">
-    zeeerwaz4@gmail.com
-  </a>
-    </p>
-    <form action="https://formsubmit.co/zeeerwaz4@gmail.com" method="POST">
+    <div class="card">
 
-  <input type="text" name="name" placeholder="Name" required>
+        <img src="pig.png" class="floating-pig">
 
-  <input type="email" name="email" placeholder="Email" required>
+        <h2>Smart Monitoring</h2>
 
-  <textarea name="message" placeholder="Message"></textarea>
+        <p>
+            Monitor pig health, feeding,
+            environment, and farm records
+            using modern AI technology.
+        </p>
 
-  <button type="submit">Send</button>
-
-    </form>
-
-    <div class="pig-container">
-
-      <div class="pig-face">
-
-        <div class="ear left-ear"></div>
-        <div class="ear right-ear"></div>
-
-        <div class="eye left-eye"></div>
-        <div class="eye right-eye"></div>
-
-        <div class="snout">
-          <div class="nostril"></div>
-          <div class="nostril"></div>
-        </div>
-
-        <div class="smile"></div>
-
-      </div>
+        <button>View Dashboard</button>
 
     </div>
 
-  </div>
-  <footer>
-  <p>© 2026 Swine Monitoring System</p>
-  </footer>
+    <div class="card">
+
+        <h2>Contact Us</h2>
+
+        <form>
+
+            <input type="text" placeholder="Your Name">
+
+            <input type="email" placeholder="Your Email">
+
+            <textarea placeholder="Your Message"></textarea>
+
+            <button type="submit">Send Message</button>
+
+        </form>
+
+    </div>
+
+</div>
+
+<footer>
+    Swine Monitoring System © 2026
+</footer>
+
 </body>
 </html>
-
