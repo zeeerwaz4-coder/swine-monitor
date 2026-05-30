@@ -1,11 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Swine Monitoring System</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial, sans-serif;
+    background:linear-gradient(to bottom right,#0b1f3a,#14532d);
+    min-height:100vh;
+    overflow-x:hidden;
+    color:white;
+    position:relative;
+}
+
+/* AI MOVING BACKGROUND */
+
+.ai-bg{
+    position:fixed;
+    width:200%;
+    height:200%;
+    top:-50%;
+    left:-50%;
+    background:
+    repeating-linear-gradient(
+        90deg,
+        rgba(0,255,100,0.08) 0px,
+        rgba(0,255,100,0.08) 2px,
+        transparent 2px,
+        transparent 60px
+    );
+
+    animation:moveGrid 12s linear infinite;
+    z-index:-1;
+}
+
+@keyframes moveGrid{
+    from{
+        transform:translateX(0);
+    }
+
+    to{
+        transform:translateX(-120px);
+    }
+}
+
+/* HEADER */
+
+header{
+    width:100%;
+    padding:20px;
+    text-align:center;
+    background:rgba(0,0,0,0.3);
+    backdrop-filter:blur(6px);
+    box-shadow:0 4px 15px rgba(0,0,0,0.3);
+}
+
+header h1{
+    font-size:38px;
+    margin-bottom:10px;
+}
+
+header p{
+    color:#d1d5db;
+}
+
+/* MAIN CONTAINER */
+
+.container{
+    width:90%;
+    max-width:1200px;
+    margin:auto;
+    padding:40px 20px;
+    text-align:center;
+}
+
+/* INFO CARD */
+
+.card{
+    background:rgba(255,255,255,0.08);
+    border:1px solid rgba(255,255,255,0.15);
+    border-radius:20px;
+    padding:35px;
+    margin-top:40px;
+    backdrop-filter:blur(10px);
+    box-shadow:0 0 20px rgba(0,0,0,0.3);
+}
+
+.card h2{
+    font-size:32px;
+    margin-bottom:20px;
+}
+
+.card p{
+    line-height:1.8;
+    color:#e5e7eb;
+    font-size:18px;
+}
+
+/* BUTTONS */
+
+.buttons{
+    margin-top:35px;
+}
+
+.btn{
+    display:inline-block;
+    padding:14px 28px;
+    margin:10px;
+    border-radius:12px;
+    text-decoration:none;
+    color:white;
+    font-size:18px;
+    transition:0.3s;
+}
+
+.btn-primary{
+    background:#16a34a;
+}
+
+.btn-primary:hover{
+    background:#15803d;
+    transform:translateY(-3px);
+}
+
+.btn-secondary{
+    background:#2563eb;
+}
+
+.btn-secondary:hover{
+    background:#1d4ed8;
+    transform:translateY(-3px);
+}
+
+/* FORM */
+
+.contact-box{
+    margin-top:50px;
+    background:rgba(255,255,255,0.08);
+    padding:30px;
+    border-radius:20px;
+    backdrop-filter:blur(10px);
+}
+
+.contact-box h2{
+    margin-bottom:20px;
+}
+
+input,
+textarea{
+    width:100%;
+    padding:15px;
+    margin-top:15px;
+    border:none;
+    border-radius:10px;
+    outline:none;
+    font-size:16px;
+}
+
+textarea{
+    min-height:120px;
+    resize:none;
+}
+
+.submit-btn{
+    margin-top:20px;
+    padding:15px 30px;
+    border:none;
+    border-radius:10px;
+    background:#16a34a;
+    color:white;
+    font-size:18px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.submit-btn:hover{
+    background:#15803d;
+}
+
+/* FLOATING PIG */
+
+.floating-pig{
+    position:fixed;
+    right:25px;
+    bottom:25px;
+    font-size:75px;
+    animation:floatPig 3s ease-in-out infinite;
+    z-index:999;
+}
+
+@keyframes floatPig{
+
+    0%{
+        transform:translateY(0px);
+    }
+
+    50%{
+        transform:translateY(-20px);
+    }
+
+    100%{
+        transform:translateY(0px);
+    }
+
+}
+
+/* FOOTER */
+
+footer{
+    margin-top:60px;
+    padding:20px;
+    text-align:center;
+    background:rgba(0,0,0,0.3);
+    color:#d1d5db;
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
     header h1{
         font-size:28px;
     }
 
-    .floating-pig{
-        width:130px;
+    .card h2{
+        font-size:24px;
     }
 
+    .card p{
+        font-size:16px;
+    }
+
+    .floating-pig{
+        font-size:55px;
+    }
+.pig-container{
+    position:fixed;
+    right:25px;
+    bottom:25px;
+    z-index:999;
+    animation:floatPig 3s ease-in-out infinite;
+}
+
+.pig-face{
+    position:relative;
+    font-size:75px;
+}
+
+.eye{
+    position:absolute;
+    width:8px;
+    height:8px;
+    background:black;
+    border-radius:50%;
+    top:28px;
+    animation:blink 4s infinite;
+}
+
+.left-eye{
+    left:22px;
+}
+
+.right-eye{
+    right:22px;
+}
+
+@keyframes blink{
+
+    0%, 45%, 50%, 100%{
+        height:8px;
+    }
+
+    47%{
+        height:1px;
+    }
+
+    }
 }
 
 </style>
@@ -14,32 +295,55 @@
 <body>
 
 <div class="ai-bg"></div>
-<div class="glow"></div>
 
 <header>
-    <h1>Swine Monitoring System</h1>
-    <p>AI Powered Pig Farm Monitoring</p>
+    <h1>🐷 Swine Monitoring System</h1>
+    <p>AI Powered Livestock Monitoring and Farm Management</p>
 </header>
 
 <div class="container">
 
-    <div class="card">
 
-        <img src="pig.png" class="floating-pig">
+    <div class="pig-face">
 
-        <h2>Smart Monitoring</h2>
+        <div class="eye left-eye"></div>
+        <div class="eye right-eye"></div>
 
-        <p>
-            Monitor pig health, feeding,
-            environment, and farm records
-            using modern AI technology.
-        </p>
+        🐷
 
-        <button>View Dashboard</button>
+    </div>
 
     </div>
 
     <div class="card">
+
+        <h2>Smart Swine Farm Monitoring</h2>
+
+        <p>
+            Monitor your swine farm efficiently using modern AI-powered
+            technology. Track feeding schedules, monitor pig health,
+            manage records, and improve productivity with a smarter
+            digital system.
+        </p>
+
+        <div class="buttons">
+
+            <a href="tutorials.html" class="btn btn-primary">
+                Tutorials
+                <video controls width="800">
+    <source src="https://swine-monitor.zeeerwaz4.workers.dev/demo.mp4" type="video/mp4">
+                </video>
+            </a>
+
+            <a href="#" class="btn btn-secondary">
+                Learn More
+            </a>
+
+        </div>
+
+    </div>
+
+    <div class="contact-box">
 
         <h2>Contact Us</h2>
 
@@ -51,12 +355,18 @@
 
             <textarea placeholder="Your Message"></textarea>
 
-            <button type="submit">Send Message</button>
-
+            <button class="submit-btn">
+                Send Message
+            </button>
+No
         </form>
 
     </div>
 
+</div>
+
+<div class="floating-pig">
+🐷
 </div>
 
 <footer>
@@ -64,4 +374,4 @@
 </footer>
 
 </body>
-</html>
+    </html>
