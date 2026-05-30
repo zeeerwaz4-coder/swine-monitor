@@ -9,6 +9,7 @@
   <style>
     body {
       margin: 0;
+      overflow-x: hidden;
       font-family: Arial, sans-serif;
       background: linear-gradient(to bottom right, #0b3d2e, #14532d);
       color: white;
@@ -17,6 +18,31 @@
       text-align: center;
       box-sixing: border-box
     }
+    .ai-bg {
+  position: fixed;
+  width: 200%;
+  height: 200%;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      rgba(0,255,0,0.1) 0px,
+      rgba(0,255,0,0.1) 2px,
+      transparent 2px,
+      transparent 50px
+    );
+
+  animation: moveGrid 8s linear infinite;
+}
+
+@keyframes moveGrid {
+  from {
+    transform: translate(0,0);
+  }
+
+  to {
+    transform: translate(-50px,-50px);
+  }
+}
 
     .container {
       max-width: 700px;
