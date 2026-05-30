@@ -20,6 +20,8 @@
     }
     .ai-bg {
   position: fixed;
+  top: 0;
+  left: 0;
   width: 200%;
   height: 200%;
   background:
@@ -39,14 +41,7 @@ background:
     transparent 50px
   ),
 
-  repeating-linear-gradient(
-    0deg,
-    rgba(0,255,0,0.05) 0px,
-    rgba(0,255,0,0.05) 2px,
-    transparent 2px,
-    transparent 50px
-  animation: moveGrid 8s linear infinite;
-}
+  
 
 @keyframes moveGrid {
   from {
