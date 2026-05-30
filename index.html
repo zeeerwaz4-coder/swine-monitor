@@ -315,7 +315,35 @@ footer{
     color:#bbf7d0;
     font-size:15px;
 }
+    <head>
 
+<style>
+
+.ai-core{
+  width:120px;
+  height:120px;
+  border-radius:50%;
+  position:fixed;
+  right:30px;
+  bottom:30px;
+
+  background:
+  radial-gradient(circle,
+  #d9d9d9,
+  #7f8c8d,
+  #2c3e50);
+
+  box-shadow:
+  0 0 30px #00ffff;
+
+  animation:floatAI 4s ease-in-out infinite;
+}
+
+@keyframes floatAI{
+  0%{transform:translateY(0);}
+  50%{transform:translateY(-15px);}
+  100%{transform:translateY(0);}
+} 
 </style>
 </head>
 
@@ -389,6 +417,31 @@ SYSTEM ONLINE
 <footer>
 Swine Monitoring System
 </footer>
+    
+    <script>
+window.onload = () => {
+
+  const intro = `
+  Welcome to the Swine Monitoring System.
+
+  Our system automates important monitoring and computing tasks commonly needed in swine farm management.
+
+  It helps monitor reheat periods, schedule farrowing dates, check farrowing availability, calculate breeding progress from breeding date up to today, and organize other essential farm records efficiently.
+
+  This system is designed to improve monitoring accuracy, reduce manual computation, and support better farm management decisions.
+
+  Thank you for visiting.
+  `;
+
+  const speech = new SpeechSynthesisUtterance(intro);
+
+  speech.rate = 0.95;
+  speech.pitch = 1;
+  speech.volume = 1;
+
+  speechSynthesis.speak(speech);
+};
+</script>
 
 </body>
 </html>
