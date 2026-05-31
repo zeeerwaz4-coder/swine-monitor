@@ -416,46 +416,74 @@ SYSTEM ONLINE
 <footer>
 Swine Monitoring System
 </footer>
-    <script>
-function speakAI(message) {
+<script>
 
-    // Stop old voice first
+function startAISpeaking() {
+
+    // Stop previous speech
     window.speechSynthesis.cancel();
 
-    const speech = new SpeechSynthesisUtterance(message);
+    const text = "Welcome to Swine Monitoring System. Our intelligent monitoring system helps automate swine farm management including breeding schedules, farrowing monitoring, heat detection, and daily farm monitoring operations.";
+
+    const speech = new SpeechSynthesisUtterance(text);
 
     speech.lang = "en-US";
-    speech.rate = 1;
+    speech.rate = 0.92;
     speech.pitch = 1;
     speech.volume = 1;
 
-    // Try more natural voice
-    const voices = window.speechSynthesis.getVoices();
+    function loadVoice() {
 
-    const preferred =
-        voices.find(v => v.name.includes("Google")) ||
-        voices.find(v => v.name.includes("Female")) ||
-        voices[0];
+        const voices = speechSynthesis.getVoices();
 
-    if(preferred){
-        speech.voice = preferred;
+        let selectedVoice =
+            voices.find(v => v.name.includes("Google US English")) ||
+            voices.find(v => v.name.includes("Samantha")) ||
+            voices.find(v => v.name.includes("English")) ||
+            voices[0];
+
+        if(selectedVoice){
+            speech.voice = selectedVoice;
+        }
+
+        speechSynthesis.speak(speech);
     }
 
-    window.speechSynthesis.speak(speech);
+    // Some Android phones load voices late
+    if (speechSynthesis.getVoices().length === 0) {
+
+        speechSynthesis.onvoiceschanged = loadVoice;
+
+    } else {
+
+        loadVoice();
+
+    }
 }
 
+
+// MOBILE AUTOPLAY FIX
+document.body.addEventListener("click", function firstClick() {
+
+    startAISpeaking();
+
+    document.body.removeEventListener("click", firstClick);
+
+});
+
+
+// AUTO START
 window.addEventListener("load", () => {
 
     setTimeout(() => {
 
-        speakAI(
-            "Welcome to Swine Monitoring System. Our system automates pig monitoring, breeding schedules, farrowing schedules, and heat detection."
-        );
+        startAISpeaking();
 
-    }, 1500);
+    }, 2000);
 
 });
-    </script>
+
+</script>
 
 
 </body>
