@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Cinematic Desert Walk</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    overflow:hidden;
+    background:black;
+    font-family:Arial, sans-serif;
+}
+
+/* SKY */
+.sky{
+    position:absolute;
+    width:100%;
+    height:100%;
+    background:
+    radial-gradient(circle at center,
+    rgba(255,170,80,0.4) 0%,
+    rgba(255,120,40,0.15) 20%,
+    rgba(10,10,20,1) 70%);
+}
+
+/* SUN */
+.sun{
+    position:absolute;
+    width:220px;
+    height:220px;
+    border-radius:50%;
+    background:radial-gradient(circle,
+    #ffd27a 0%,
+    #ff9b42 45%,
+    rgba(255,120,50,0.1) 70%);
+    left:50%;
+    top:18%;
+    transform:translateX(-50%);
+    box-shadow:
+    0 0 80px rgba(255,160,60,0.8),
+    0 0 150px rgba(255,120,40,0.4);
+    animation:sunPulse 6s ease-in-out infinite;
+}
+
+@keyframes sunPulse{
+    0%,100%{
+        transform:translateX(-50%) scale(1);
+    }
+    50%{
+        transform:translateX(-50%) scale(1.08);
+    }
+}
+
+/* MOUNTAINS */
+.mountains{
+    position:absolute;
+    width:100%;
+    height:40%;
+    bottom:25%;
+    background:
+    linear-gradient(to top,
+    rgba(20,10,10,1),
+    rgba(40,20,20,0.8));
+    clip-path:polygon(
+    0% 100%,
+    0% 70%,
+    15% 45%,
+    30% 65%,
+    45% 35%,
+    60% 60%,
+    75% 40%,
+    90% 70%,
+    100% 50%,
+    100% 100%);
+    opacity:0.8;
+}
+
+/* DESERT */
+.desert{
+    position:absolute;
+    width:100%;
+    height:45%;
+    bottom:0;
+    background:
+    linear-gradient(to bottom,
+    #6b3e1f,
+    #3d2212 60%,
+    #1b0f08);
+}
+
+/* SAND PARTICLES */
+.particle{
+    position:absolute;
+    width:2px;
+    height:2px;
+    background:rgba(255,220,180,0.7);
+    border-radius:50%;
+    animation:wind linear infinite;
+}
+
+@keyframes wind{
+    from{
+        transform:translateX(0) translateY(0);
+        opacity:0;
+    }
+    10%{
+        opacity:1;
+    }
+    to{
+        transform:translateX(-1400px) translateY(-100px);
+        opacity:0;
+    }
+}
+
+/* CHARACTER */
+.character{
+    position:absolute;
+    bottom:18%;
+    left:-200px;
+    width:140px;
+    height:320px;
+    animation:walkAcross 18s linear infinite;
+}
+
+/* BODY */
+.body{
+    position:absolute;
+    width:48px;
+    height:130px;
+    background:black;
+    left:46px;
+    top:80px;
+    border-radius:20px;
+}
+
+/* HEAD */
+.head{
+    position:absolute;
+    width:70px;
+    height:70px;
+    background:black;
+    border-radius:50%;
+    left:35px;
+    top:18px;
+}
+
+/* ARMS */
+.arm{
+    position:absolute;
+    width:18px;
+    height:95px;
+    background:black;
+    top:90px;
+    border-radius:20px;
+    transform-origin:top center;
+}
+
+.arm.left{
+    left:30px;
+    animation:armLeft 1s ease-in-out infinite;
+}
+
+.arm.right{
+    right:30px;
+    animation:armRight 1s ease-in-out infinite;
+}
+
+/* LEGS */
+.leg{
+    position:absolute;
+    width:22px;
+    height:120px;
+    background:black;
+    top:190px;
+    border-radius:20px;
+    transform-origin:top center;
+}
+
+.leg.left{
+    left:45px;
+    animation:legLeft 1s ease-in-out infinite;
+}
+
+.leg.right{
+    right:45px;
+    animation:legRight 1s ease-in-out infinite;
+}
+
+/* WALKING MOTION */
+@keyframes legLeft{
+    0%,100%{
+        transform:rotate(22deg);
+    }
+    50%{
+        transform:rotate(-22deg);
+    }
+}
+
+@keyframes legRight{
+    0%,100%{
+        transform:rotate(-22deg);
+    }
+    50%{
+        transform:rotate(22deg);
+    }
+}
+
+@keyframes armLeft{
+    0%,100%{
+        transform:rotate(-18deg);
+    }
+    50%{
+        transform:rotate(18deg);
+    }
+}
+
+@keyframes armRight{
+    0%,100%{
+        transform:rotate(18deg);
+    }
+    50%{
+        transform:rotate(-18deg);
+    }
+}
+
+/* CHARACTER MOVEMENT */
+@keyframes walkAcross{
+    0%{
+        left:-180px;
+        transform:scale(0.9);
+    }
+    50%{
+        transform:scale(1);
+    }
+    100%{
+        left:110%;
+        transform:scale(1.05);
+    }
+}
+
+/* ATMOSPHERIC OVERLAY */
+.overlay{
+    position:absolute;
+    width:100%;
+    height:100%;
+    background:
+    radial-gradient(circle,
+    transparent 40%,
+    rgba(0,0,0,0.55) 100%);
+    pointer-events:none;
+}
+
+/* TITLE */
+.title{
+    position:absolute;
+    top:40px;
+    width:100%;
+    text-align:center;
+    color:white;
+    font-size:42px;
+    letter-spacing:5px;
+    font-weight:300;
+    text-shadow:
+    0 0 10px rgba(255,255,255,0.4),
+    0 0 25px rgba(255,140,80,0.5);
+    animation:fadeGlow 4s ease-in-out infinite;
+}
+
+.subtitle{
+    position:absolute;
+    top:100px;
+    width:100%;
+    text-align:center;
+    color:rgba(255,255,255,0.7);
+    font-size:16px;
+    letter-spacing:8px;
+}
+
+@keyframes fadeGlow{
+    0%,100%{
+        opacity:0.8;
+    }
+    50%{
+        opacity:1;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="sky"></div>
+<div class="sun"></div>
+<div class="mountains"></div>
+<div class="desert"></div>
+
+<div class="title">CINEMATIC DESERT</div>
+<div class="subtitle">HTML • CSS • JAVASCRIPT EXPERIENCE</div>
+
+<!-- CHARACTER -->
+<div class="character">
+    <div class="head"></div>
+    <div class="body"></div>
+
+    <div class="arm left"></div>
+    <div class="arm right"></div>
+
+    <div class="leg left"></div>
+    <div class="leg right"></div>
+</div>
+
+<div class="overlay"></div>
+
+<script>
+
+/* CREATE SAND PARTICLES */
+
+for(let i=0; i<120; i++){
+
+    const particle = document.createElement("div");
+    particle.classList.add("particle");
+
+    particle.style.left = Math.random()*window.innerWidth + "px";
+    particle.style.top = Math.random()*window.innerHeight + "px";
+
+    const size = Math.random()*3;
+    particle.style.width = size + "px";
+    particle.style.height = size + "px";
+
+    particle.style.animationDuration =
+    (5 + Math.random()*8) + "s";
+
+    particle.style.animationDelay =
+    Math.random()*10 + "s";
+
+    document.body.appendChild(particle);
+}
+
+</script>
+
+</body>
+  </html>
