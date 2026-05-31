@@ -1,1 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Swine Monitoring System</title>
+    <title>Swine Monitoring System</title>
 
+  <meta name="description" content="Swine Monitoring System for pig health monitoring and management">
+  <meta name="keywords" content="swine monitoring, pig monitoring, livestock system">
+  <meta name="author" content="Your Name">
+
+  <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+<head>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    background:linear-gradient(to bottom,#052e16,#064e3b,#022c22);
+    color:white;
+    overflow-x:hidden;
+    min-height:100vh;
+}
+
+/* MOVING BACKGROUND */
+
+.ai-bg{
+    position:fixed;
+    width:200%;
+    height:200%;
+    top:-50%;
+    left:-50%;
+    background:
+    repeating-linear-gradient(
+        90deg,
+        rgba(0,255,100,0.08) 0px,
+        rgba(0,255,100,0.08) 2px,
+        transparent 2px,
+        transparent 60px
+    ),
+    repeating-linear-gradient(
+        0deg,
+        rgba(0,255,100,0.05) 0px,
+        rgba(0,255,100,0.05) 2px,
+        transparent 2px,
+        transparent 60px
+    );
+
+    animation:moveGrid 10s linear infinite;
+    z-index:-1;
+}
+
+@keyframes moveGrid{
+    0%{
+        transform:translate(0,0);
+    }
+
+    100%{
+        transform:translate(60px,60px);
+    }
+}
+
+.container{
+    width:80%;
+    max-width:600px;
+    margin:0 auto;
+    text-align:center;
+    padding:20px 20px;
+}
+
+/* TITLE */
+
+h1{
+    font-size:42px;
+    margin-top:20px;
+    color:#bbf7d0;
+}
+
+.description{
+    margin-top:20px;
+    font-size:18px;
+    line-height:1.7;
+    color:#d1fae5;
+}
+
+/* STATUS */
+
+.status-box{
+    margin:25px auto;
+    background:#064e3b;
+    width:220px;
+    padding:12px;
+    border-radius:10px;
+    border:1px solid #22c55e;
+    font-weight:bold;
+    box-shadow:0 0 10px rgba(0,255,100,0.4);
+}
+
+.online-dot{
+    display:inline-block;
+    width:10px;
+    height:10px;
+    background:#22c55e;
+    border-radius:50%;
+    margin-right:8px;
+    animation:blink 1s infinite;
+}
+
+@keyframes blink{
+    50%{
+        opacity:0.3;
+    }
+}
+
+/* WHITE BOX */
+
+.white-box{
+    background:white;
+    color:black;
+    padding:25px;
+    border-radius:15px;
+    margin-top:35px;
+    box-shadow:0 0 20px rgba(0,0,0,0.3);
+}
+
+.white-box h2{
+    margin-bottom:20px;
+}
+
+.white-box p{
+    margin-top:20px;
+    line-height:1.6;
+}
+
+.video-box{
+    margin-top:20px;
+}
+
+video{
+    width:100%;
+    border-radius:10px;
+}
+
+/* FORM */
+
+.form-box{
+    background:white;
+    color:black;
+    padding:25px;
+    border-radius:15px;
+    margin-top:35px;
+    box-shadow:0 0 20px rgba(0,0,0,0.3);
+}
+
+.form-box h2{
+    margin-bottom:20px;
+}
+
+input,
+textarea{
+    width:90%;
+    padding:14px;
+    margin-top:15px;
+    border-radius:8px;
+    border:1px solid #ccc;
+    font-size:15px;
+}
+
+textarea{
+    height:100px;
+    resize:none;
+}
+
+button{
+    margin-top:15px;
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:8px;
+    background:#15803d;
+    color:white;
+    font-size:18px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover{
+    background:#166534;
+}
+
+/* FLOATING PIG */
+
+.pig-container{
+    position:fixed;
+    right:25px;
+    bottom:25px;
+    animation:floatPig 3s ease-in-out infinite;
+}
+
+@keyframes floatPig{
+    50%{
+        transform:translateY(-10px);
+    }
+}
+
+.pig{
+    position:relative;
+    width:100px;
+    height:100px;
+    background:pink;
+    border-radius:50%;
+    border:4px solid #ff8fab;
+}
+
+.ear-left,
+.ear-right{
+    position:absolute;
+    width:30px;
+    height:30px;
+    background:pink;
+    border-radius:50%;
+    top:-10px;
+    border:4px solid #ff8fab;
+}
+
+.ear-left{
+    left:10px;
+}
+
+.ear-right{
+    right:10px;
+}
+
+.eye{
+    position:absolute;
+    width:10px;
+    height:10px;
+    background:black;
+    border-radius:50%;
+    top:38px;
+    animation:eyeBlink 4s infinite;
+}
+
+.eye.left{
+    left:28px;
+}
+
+.eye.right{
+    right:28px;
+}
+
+@keyframes eyeBlink{
+    0%,45%,100%{
+        height:10px;
+    }
+
+    50%{
+        height:2px;
+    }
+}
+
+.nose{
+    position:absolute;
+    width:34px;
+    height:24px;
+    background:#ffb3c1;
+    border-radius:20px;
+    top:52px;
+    left:33px;
+}
+
+.nose::before,
+.nose::after{
+    content:"";
+    position:absolute;
+    width:5px;
+    height:8px;
+    background:black;
+    border-radius:50%;
+    top:7px;
+}
+
+.nose::before{
+    left:9px;
+}
+
+.nose::after{
+    right:9px;
+}
+
+.mouth{
+    position:absolute;
+    width:35px;
+    height:18px;
+    border-bottom:3px solid black;
+    border-radius:0 0 40px 40px;
+    top:73px;
+    left:31px;
+}
+
+/* FOOTER */
+
+footer{
+    text-align:center;
+    margin-top:80px;
+    padding:25px;
+    background:#02140e;
+    color:#bbf7d0;
+    font-size:15px;
+}
+    
+
+
+.ai-core{
+  width:120px;
+  height:120px;
+  border-radius:50%;
+  position:fixed;
+  right:30px;
+  bottom:30px;
+
+  background:
+  radial-gradient(circle,
+  #d9d9d9,
+  #7f8c8d,
+  #2c3e50);
+
+  box-shadow:
+  0 0 30px #00ffff;
+
+  animation:floatAI 4s ease-in-out infinite;
+}
+
+@keyframes floatAI{
+  0%{transform:translateY(0);}
+  50%{transform:translateY(-15px);}
+  100%{transform:translateY(0);}
+} 
+</style>
+</head>
+
+<body>
+
+<div class="ai-bg"></div>
+
+<div class="container">
+
+<h1>Swine Monitoring System</h1>
+
+<p class="description">
+A smart and reliable monitoring system designed to help farmers track sow conditions, monitor swine health, improve farm management, and simplify daily monitoring operations through an organized digital platform.
+</p>
+
+<div class="status-box">
+<span class="online-dot"></span>
+SYSTEM ONLINE
+</div>
+<div class="video-container">
+    <video controls>
+        <source src="demo3.mp4" type="video/mp4">
+    </video>
+</div>
+
+<a href="tutorials.html" class="watch-btn">
+    Watch Here
+</a>
+
+</div>
+
+</div>
+
+
+<h2>Send a Message</h2>
+
+<form action="https://formsubmit.co/zeeerwaz4@gmail.com" method="POST">
+
+<input type="text" name="name" placeholder="Enter your name" required>
+
+<input type="email" name="email" placeholder="Enter your email" required>
+
+<textarea name="message" placeholder="Enter your message"></textarea>
+
+<button type="submit">Send Message</button>
+
+</form>
+
+</div>
+
+</div>
+
+<div class="pig-container">
+
+<div class="pig">
+
+<div class="ear-left"></div>
+<div class="ear-right"></div>
+
+<div class="eye left"></div>
+<div class="eye right"></div>
+
+<div class="nose"></div>
+
+<div class="mouth"></div>
+
+</div>
+
+</div>
+
+<footer>
+Swine Monitoring System
+</footer>
+    
+    <script>
+window.onload = () => {
+
+  const intro = `
+  Welcome to the Swine Monitoring System.
+
+  Our system automates important monitoring and computing tasks commonly needed in swine farm management.
+
+  It helps monitor reheat periods, schedule farrowing dates, check farrowing availability, calculate breeding progress from breeding date up to today, and organize other essential farm records efficiently.
+
+  This system is designed to improve monitoring accuracy, reduce manual computation, and support better farm management decisions.
+
+  Thank you for visiting.
+  `;
+
+  const speech = new SpeechSynthesisUtterance(intro);
+
+  speech.rate = 0.95;
+  speech.pitch = 1;
+  speech.volume = 1;
+
+  speechSynthesis.speak(speech);
+};
+</script>
+
+</body>
+</html>
