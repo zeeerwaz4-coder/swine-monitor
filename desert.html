@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Man Walking in Desert</title>
+<style>
+body{
+    margin:0;
+    overflow:hidden;
+    height:100vh;
+    background:linear-gradient(to bottom,#87ceeb 0%,#f7d488 55%,#d9a441 100%);
+}
+
+/* Sun */
+.sun{
+    position:absolute;
+    width:120px;
+    height:120px;
+    background:#ffd54f;
+    border-radius:50%;
+    top:50px;
+    right:100px;
+    box-shadow:0 0 50px #ffd54f;
+}
+
+/* Sand dunes */
+.dune1,
+.dune2{
+    position:absolute;
+    width:200%;
+    height:250px;
+    border-radius:50%;
+    bottom:-120px;
+}
+
+.dune1{
+    background:#e0b45d;
+    left:-20%;
+}
+
+.dune2{
+    background:#c99238;
+    bottom:-150px;
+    left:-10%;
+}
+
+/* Walking man */
+.man{
+    position:absolute;
+    bottom:180px;
+    left:-150px;
+    width:100px;
+    height:220px;
+    animation:walkAcross 12s linear infinite;
+}
+
+.head{
+    width:45px;
+    height:45px;
+    background:#222;
+    border-radius:50%;
+    position:absolute;
+    top:0;
+    left:28px;
+}
+
+.body{
+    width:12px;
+    height:80px;
+    background:#222;
+    position:absolute;
+    top:45px;
+    left:44px;
+}
+
+.arm{
+    width:10px;
+    height:70px;
+    background:#222;
+    position:absolute;
+    top:50px;
+    transform-origin:top center;
+}
+
+.arm.left{
+    left:20px;
+    animation:armLeft 0.8s infinite alternate;
+}
+
+.arm.right{
+    right:20px;
+    animation:armRight 0.8s infinite alternate;
+}
+
+.leg{
+    width:12px;
+    height:90px;
+    background:#222;
+    position:absolute;
+    top:120px;
+    transform-origin:top center;
+}
+
+.leg.left{
+    left:30px;
+    animation:legLeft 0.8s infinite alternate;
+}
+
+.leg.right{
+    right:30px;
+    animation:legRight 0.8s infinite alternate;
+}
+
+@keyframes legLeft{
+    from{ transform:rotate(25deg); }
+    to{ transform:rotate(-25deg); }
+}
+
+@keyframes legRight{
+    from{ transform:rotate(-25deg); }
+    to{ transform:rotate(25deg); }
+}
+
+@keyframes armLeft{
+    from{ transform:rotate(-25deg); }
+    to{ transform:rotate(25deg); }
+}
+
+@keyframes armRight{
+    from{ transform:rotate(25deg); }
+    to{ transform:rotate(-25deg); }
+}
+
+@keyframes walkAcross{
+    from{
+        left:-150px;
+    }
+    to{
+        left:110%;
+    }
+}
+
+/* Heat waves */
+.heat{
+    position:absolute;
+    width:100%;
+    height:100%;
+    background:repeating-linear-gradient(
+        transparent 0px,
+        rgba(255,255,255,0.03) 2px,
+        transparent 4px
+    );
+    animation:heatMove 3s linear infinite;
+}
+
+@keyframes heatMove{
+    from{ transform:translateY(0px); }
+    to{ transform:translateY(10px); }
+}
+
+</style>
+</head>
+<body>
+
+<div class="sun"></div>
+<div class="dune1"></div>
+<div class="dune2"></div>
+<div class="heat"></div>
+
+<div class="man">
+    <div class="head"></div>
+    <div class="body"></div>
+    <div class="arm left"></div>
+    <div class="arm right"></div>
+    <div class="leg left"></div>
+    <div class="leg right"></div>
+</div>
+
+</body>
+  </html>
