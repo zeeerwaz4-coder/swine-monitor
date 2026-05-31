@@ -11,7 +11,7 @@
   <meta name="author" content="Your Name">
 
   <link rel="sitemap" type="application/xml" href="/sitemap.xml">
-<head>
+</head>
 
 <style>
 
@@ -349,7 +349,7 @@ footer{
 <body>
 
 <div class="ai-bg"></div>
-
+<div class="ai-core"></div>
 <div class="container">
 
 <h1>Swine Monitoring System</h1>
@@ -418,28 +418,33 @@ Swine Monitoring System
 </footer>
     
     <script>
-window.onload = () => {
 
-  const intro = `
-  Welcome to the Swine Monitoring System.
+function speakAI() {
 
-  Our system automates important monitoring and computing tasks commonly needed in swine farm management.
+const intro = `
+Welcome to the Swine Monitoring System.
 
-  It helps monitor reheat periods, schedule farrowing dates, check farrowing availability, calculate breeding progress from breeding date up to today, and organize other essential farm records efficiently.
+Our system automates important monitoring and computing tasks commonly needed in swine farm management.
 
-  This system is designed to improve monitoring accuracy, reduce manual computation, and support better farm management decisions.
+It helps monitor reheat periods, schedule farrowing dates, check farrowing availability, calculate breeding progress from breeding date up to today, and organize other essential farm records efficiently.
 
-  Thank you for visiting.
-  `;
+This system is designed to improve monitoring accuracy, reduce manual computation, and support better farm management decisions.
 
-  const speech = new SpeechSynthesisUtterance(intro);
+Thank you for visiting.
+`;
 
-  speech.rate = 0.95;
-  speech.pitch = 1;
-  speech.volume = 1;
+const speech = new SpeechSynthesisUtterance(intro);
 
-  speechSynthesis.speak(speech);
-};
+speech.rate = 0.95;
+speech.pitch = 1;
+speech.volume = 1;
+
+speechSynthesis.speak(speech);
+
+}
+
+document.body.addEventListener("click", speakAI, { once:true });
+
 </script>
 
 </body>
