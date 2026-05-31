@@ -416,52 +416,7 @@ SYSTEM ONLINE
 <footer>
 Swine Monitoring System
 </footer>
-    <script>
-function speakAI() {
-
-    const message = `
-    Welcome to the Swine Monitoring System.
-
-    Our system automates important swine farm monitoring tasks such as
-    heat detection, breeding records, farrowing scheduling,
-    pig counting, and health monitoring.
-
-    It helps farmers reduce manual computation,
-    improve efficiency,
-    and monitor swine production more accurately.
-
-    Thank you for visiting our system.
-    `;
-
-    const speech = new SpeechSynthesisUtterance(message);
-
-    // Try to use more natural voice
-    const voices = window.speechSynthesis.getVoices();
-
-    // Select best human-like English voice
-    speech.voice =
-        voices.find(v => v.name.includes('Google US English')) ||
-        voices.find(v => v.name.includes('Samantha')) ||
-        voices.find(v => v.lang === 'en-US');
-
-    // Human-like settings
-    speech.rate = 0.92;     // slower = more natural
-    speech.pitch = 1;
-    speech.volume = 1;
-
-    window.speechSynthesis.speak(speech);
-}
-
-// Load voices properly
-window.speechSynthesis.onvoiceschanged = () => {
-    console.log("Voices loaded");
-};
-
-// Auto speak after page loads
-window.onload = () => {
-    setTimeout(speakAI, 1500);
-};
-</script>
+    
 
 </body>
 </html>
