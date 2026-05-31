@@ -416,7 +416,36 @@ SYSTEM ONLINE
 <footer>
 Swine Monitoring System
 </footer>
-    
+    <script>
+window.onload = () => {
+
+    const speech = new SpeechSynthesisUtterance(
+        "Welcome to the Swine Monitoring System."
+    );
+
+    speech.lang = "en-US";
+    speech.rate = 0.9;
+    speech.pitch = 1;
+
+    function speakNow() {
+
+        let voices = speechSynthesis.getVoices();
+
+        speech.voice =
+            voices.find(v => v.name.includes("Google US English")) ||
+            voices[0];
+
+        speechSynthesis.speak(speech);
+    }
+
+    if (speechSynthesis.getVoices().length > 0) {
+        speakNow();
+    } else {
+        speechSynthesis.onvoiceschanged = speakNow;
+    }
+
+};
+</script>
 
 </body>
 </html>
