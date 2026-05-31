@@ -417,6 +417,45 @@ SYSTEM ONLINE
 Swine Monitoring System
 </footer>
     <script>
+function speakAI(message) {
+
+    // Stop old voice first
+    window.speechSynthesis.cancel();
+
+    const speech = new SpeechSynthesisUtterance(message);
+
+    speech.lang = "en-US";
+    speech.rate = 1;
+    speech.pitch = 1;
+    speech.volume = 1;
+
+    // Try more natural voice
+    const voices = window.speechSynthesis.getVoices();
+
+    const preferred =
+        voices.find(v => v.name.includes("Google")) ||
+        voices.find(v => v.name.includes("Female")) ||
+        voices[0];
+
+    if(preferred){
+        speech.voice = preferred;
+    }
+
+    window.speechSynthesis.speak(speech);
+}
+
+window.addEventListener("load", () => {
+
+    setTimeout(() => {
+
+        speakAI(
+            "Welcome to Swine Monitoring System. Our system automates pig monitoring, breeding schedules, farrowing schedules, and heat detection."
+        );
+
+    }, 1500);
+
+});
+    </script>
 
 
 </body>
